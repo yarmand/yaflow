@@ -1,0 +1,9 @@
+%h1 We are here in emberJS
+%div
+  {{something}}
+%ul
+  = hb 'each shootings' do
+    %li
+      {{title}}
+
+

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Yammer url:
+  = @shooting.yammer_url
+%p
+  %b Status:
+  = @shooting.status
+%p
+  %b Progression:
+  = @shooting.progression
+
+= link_to 'Edit', edit_shooting_path(@shooting)
+\|
+= link_to 'Back', shootings_path

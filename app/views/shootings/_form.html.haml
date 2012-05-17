@@ -1,0 +1,19 @@
+= form_for @shooting do |f|
+  -if @shooting.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@shooting.errors.count, "error")} prohibited this shooting from being saved:"
+      %ul
+        - @shooting.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :yammer_url
+    = f.text_field :yammer_url
+  .field
+    = f.label :status
+    = f.text_field :status
+  .field
+    = f.label :progression
+    = f.text_field :progression
+  .actions
+    = f.submit 'Save'
