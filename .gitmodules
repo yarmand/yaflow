@@ -1,0 +1,3 @@
+[submodule "yammer4r"]
+	path = yammer4r
+	url = git@github.com:yarmand/yammer4r.git
