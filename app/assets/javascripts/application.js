@@ -13,5 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require ember
-//= require ember/yaflow
+//= require ember/lib/ember-data
+//= require ember/app
 //= require_tree .

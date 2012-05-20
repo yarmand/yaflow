@@ -1,9 +1,22 @@
-%h1 We are here in emberJS
-%div
-  {{something}}
-%ul
+%ul.shootings_list
   = hb 'each shootings' do
-    %li
-      {{title}}
+    = hb 'view App.ShootingSelectorView contentBinding="this"' do
+      %li
+        %a{ event: { on: 'click', action: 'edit'} }
+          {{content.title}}
+
+#shooting
+  = hb 'with App.mainView.current_shooting' do
+    %h3
+      title: {{title}}
+    %p 
+      %a{ bind: { href: 'App.mainView.current_shooting.yammer_url' }, target: "_blank"}
+        {{App.mainView.current_shooting.yammer_url}}
+    %p
+      %strong
+        Progression: {{progression}}
+    %p
+      %strong
+        status: {{status}}
 
 

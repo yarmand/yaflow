@@ -54,7 +54,8 @@ gem "rails_admin", :git => "git://github.com/sferik/rails_admin.git"
 gem "sass", ">= 3.1.12"
 gem "simple_form"
 
-# for yammer
+# forked yammer
+gem "yammer4r", :path => File.dirname(__FILE__)
 gem "oauth"
 gem "mash"
 

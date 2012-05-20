@@ -3,7 +3,7 @@ class User
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-       :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+       :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :token_authenticatable
 
   ## Database authenticatable
   field :email,              :type => String, :null => false, :default => ""
@@ -38,8 +38,10 @@ class User
   # field :locked_at,       :type => Time
 
   ## Token authenticatable
-  # field :authentication_token, :type => String
+  field :authentication_token, :type => String
 
+  field :access_token, :type => String
+  
   def self.find_for_yammer_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
     email = data.contact['email_addresses'][0]['address']
@@ -47,7 +49,7 @@ class User
     if user = self.where(email: email).first
       user
     else # Create a user with a stub password. 
-      self.create!(:email => email, :password => Devise.friendly_token[0,20]) 
+      self.create!(:email => email, :password => Devise.friendly_token[0,20], :access_token => access_token['credentials']['token']) 
     end
   end
 

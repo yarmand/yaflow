@@ -6,6 +6,9 @@ class Shooting
   STATUSES = %w{ new waiting_photos conforming approving waiting_retouch finished }
   
   field :yammer_url, :type => String
+  field :yammer_page_id, :type => String
+  field :title, :type => String
+  field :inline_content, :type => String
   field :status, :type => String
   field :progression, :type => Integer
 
