@@ -1,8 +1,21 @@
 // Place all the styles related to the shootings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "compass"
+
+$height_shootings: 500px
+
 .shootings_list
-  float: left
-  width: 300px
+  +float-left
+  width: 180px
   background: #f9f9ff
-  height: 600px
+  height: $height_shootings
+  margin-right: 30px
+  border-right: solid thin grey
+
+#shootings_index
+  #container
+    height: $height_shootings + 20px
+
+
