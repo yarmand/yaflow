@@ -13,7 +13,7 @@ class ShootingsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json do
-        @shootings = get_shooting_from_yammer
+        @shootings = Shooting.get_shootings_from_yammer(Yammer::TokenClient.new(token: current_user.access_token))
         render json: { shootings: @shootings }
       end
     end
@@ -90,38 +90,4 @@ class ShootingsController < ApplicationController
     end
   end
 
-  def get_shooting_from_yammer
-    # do a yammer search to get all pages with tag 'yaflow'
-    # find or create every shooting of the list
-    #
-    # Possible optimisation : put resulted collection in a cache
-    logger.debug('############')
-    logger.debug("token: #{current_user.access_token}")
-    logger.debug('############')
-    yammer = Yammer::TokenClient.new(token: current_user.access_token)
-    topic=Yammer::Topic.find_by_name("Yaflow",yammer)
-    parsed_all = JSON.parse(yammer.raw_request("messages/about_topic/#{topic.id}").body) unless topic.nil?
-    msg_with_attach = parsed_all["messages"].select{|m| !m["attachments"].empty? }
-    pages = []
-    msg_with_attach.each do |m|
-      m["attachments"].each do |a|
-        pages.insert(-1, {id: a["real_id"], url: a["web_url"], title: a["name"], content: a["inline_html"]}) if a["real_type"] == "page" 
-      end
-    end
-    shootings = []
-    pages.each do |p|
-      shooting = Shooting.find_or_initialize_by(yammer_page_id: p[:id])
-      # create non existing shooting
-      unless shooting.persisted?
-        shooting.yammer_url = p[:url]
-        shooting.title = p[:title]
-        shooting.inline_content = p[:content]
-        shooting.status = "new"
-        shooting.progression = 0
-        shooting.save
-      end
-      shootings.insert(-1, shooting)
-    end
-    shootings
-  end
 end
