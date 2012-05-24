@@ -1,17 +1,17 @@
 %ul.shootings_list
   = hb 'each shootings' do
-    = hb 'view App.ShootingSelectorView contentBinding="this"' do
+    = hb 'view ShootingsApp.ShootingSelectorView contentBinding="this"' do
       %li
         %a{ event: { on: 'click', action: 'edit'} }
           {{content.title}}
 
 #shooting
-  = hb 'with App.mainView.current_shooting' do
+  = hb 'with ShootingsApp.mainView.current_shooting' do
     %h3
       title: {{title}}
     %p 
-      %a{ bind: { href: 'App.mainView.current_shooting.yammer_url' }, target: "_blank"}
-        {{App.mainView.current_shooting.yammer_url}}
+      %a{ bind: { href: 'ShootingsApp.mainView.current_shooting.yammer_url' }, target: "_blank"}
+        {{ShootingsApp.mainView.current_shooting.yammer_url}}
     %p
       %strong
         Progression: {{progression}}

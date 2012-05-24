@@ -1,4 +1,4 @@
-App.Shooting = DS.Model.extend
+ShootingsApp.Shooting = DS.Model.extend
   collectionUrl: '/shootings',
   resourceUrl: '/shootings/%@',
   resourceName: 'shooting'

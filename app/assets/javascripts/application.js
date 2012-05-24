@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require hevents
+//= require racovi
 //= require ember
-//= require ember/lib/ember-data
-//= require ember/app
+//= require lib/ember-data
+//= require shootings/app
 //= require_tree .

@@ -5,18 +5,18 @@
 #= require_tree ./helpers
 #= require_tree ./templates
 
-window.App= Ember.Application.create
+window.ShootingsApp= Ember.Application.create
 
   start: ->
-    mainView = App.MainView.create()
-    mainView.appendTo ($ "#container")
+    mainView = ShootingsApp.MainView.create()
+    mainView.appendTo ($ "#ember_container")
     this.set('mainView',mainView)
 
-App.store = DS.Store.create
+ShootingsApp.store = DS.Store.create
   adapter:  DS.RESTAdapter.create({bulkCommit: false})
   revision: 4
 
-App.displayError = (e) ->
+ShootingsApp.displayError = (e) ->
   if (typeof e == 'string')
     alert(e)
   else if (typeof e == 'object' && e.responseText != undefined)
